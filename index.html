@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+      body { background-image: url(images/bg-main-desktop.png); background-repeat: no-repeat; }
+      #Container-1 { background-image: url(images/bg-card-front.png); background-position: center; background-repeat: no-repeat;}
+
+      #C-back { background-image: url(images/bg-card-back.png); background-size: cover; background-position: center; background-repeat: no-repeat; }
+    </style>
+</head>
+<body class="">
+  <div id="Container" class="flex gap-20 p-5 m-auto text-sm mt-[140px] w-fit">
+
+    <div id="Contain" class="relative flex flex-col gap-10 right-16">
+      
+      <div id="Container-1" class="relative flex flex-col px-8 py-5 text-white rounded right-20">
+        
+        <div id="C-front" class="flex flex-col gap-14 w-[320px] left-10">
+    
+          <img src="images/card-logo.svg" alt="" class="w-16">
+          
+          <div id="C-f-bottom" class="flex flex-col gap-4">
+            <h2 id="C_num" class="text-3xl">0000 0000 0000 0000</h2>
+            <div id="C-f-bottom-2" class="flex justify-between">
+              <span id="C_name" class="text-sm">JANE APPLESSED</span>
+              <span id="C_Exp" class="text-sm">00/00</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+      
+      <div id="C-back" class="flex justify-between px-20 py-24 text-white rounded">
+        <p></p>
+        <span id="C_cvc" class="">000</span>
+      </div>
+    </div>
+
+    
+    <div id="Container-2" class="mt-[100px] ">
+
+      <form action="" class="flex flex-col gap-5">
+
+        <div id="Name">
+          <label for="cardholdername">CARDHOLDER NAME</label>
+          <br>
+          <input type="text" name="cardholdername" id="cardholdername" class="border rounded py-1.5 pr-32 pl-2 text-left outline-violet-800" placeholder="e.g. Jane Applessed">
+          
+          <p id="name" class="hidden text-red-500">can't be blank</p>
+        </div>
+
+        <div id="Card">
+          <label for="Cardnumber">CARD NUMBER</label>
+          <br>
+          <input type="text" name="Cardnumber" id="Cardnumber" class="border rounded py-1.5 pr-32 pl-2 text-left outline-violet-800" placeholder="e.g. 1234 5678 9123 0000" pattern="[0-9]{4}-[0-9]{4} [0-9]{4} [0-9]{4}" maxlength="16">
+          <p id="card" class="hidden text-red-500">Wrong format, mumber only</p>
+          <p id="card-2" class="hidden text-red-500">Can't be blank</p>
+        </div>
+
+        <div id="Exp" class="flex gap-2">
+          <div id="Ex">
+            <label for="Expdate">Exp. Date (MM/YY)</label>
+            <div>
+              <input type="text" name="Expdate" id="MM" class="border rounded py-1.5 pl-2 pr-3 text-left w-14 outline-violet-800" placeholder="MM" maxlength="2">
+              <input type="text" name="Expdate" id="YY" class="border rounded py-1.5 pl-2 pr-4 text-left w-14 outline-violet-800" placeholder="YY" maxlength="2">
+              <p id="MM/YY" class="hidden text-red-500">can't be blank</p>
+              <p id="MM/YY-2" class="hidden text-red-500">Number only</p>
+            </div>
+          </div>
+          <div>
+            <label for="cvc">cvc</label>
+            <br>
+            <input type="text" name="cvc" id="Cvc" class="border rounded text-left w-3/4 py-1.5 pl-2 pr-[62px] outline-violet-800" placeholder="e.g. 123" maxlength="3">
+            <p id="cvc" class="hidden text-red-500">can't be blank</p>
+            <p id="cvc-2" class="hidden text-red-500">Number only</p>
+          </div>
+        </div>
+
+        
+      </form>
+      <br>
+      <a onclick="Input()" class="px-[123px] py-2 rounded text-white bg-violet-950">Confirm</a>
+
+    </div>
+    <div id="Containe-2" class="hidden flex flex-col items-center gap-5 w-[370px] mt-[100px]">
+      <img src="images/icon-complete.svg" alt="">
+      <div id="Thanks" class="text-center">
+        <h1 class="text-2xl">THANK YOU!</h1>
+        <p>we've added your card details</p>
+      </div>
+      <a href="" class="px-[101px] py-2 rounded text-white bg-violet-950">Continue</a>
+    </div>
+
+    
+    
+    
+  </div>    
+
+  <script>
+    function Input(){
+        const Nameinput = document.getElementById('cardholdername').value;
+        const Cardinput = document.getElementById('Cardnumber').value;
+        const ExpMMinput = document.getElementById('MM').value;
+        const ExpYYinput = document.getElementById('YY').value;
+        const Cvcinput = document.getElementById('Cvc').value;
+        
+        if (!Nameinput){
+          document.getElementById('name').style.display = "flex"
+          document.getElementById('cardholdername').style.border = "1px solid red";
+        }else {
+          document.getElementById('name').style.display = "none"
+          document.getElementById('cardholdername').style.border = "1px solid green";
+        }
+                
+        if (!Cardinput){
+          document.getElementById('card-2').style.display = "flex"
+          document.getElementById('Cardnumber').style.border = "1px solid red";
+        } else {
+          document.getElementById('card-2').style.display = "none"
+          document.getElementById('Cardnumber').style.border = "1px solid red";
+          if(isNaN(Cardinput)){
+            document.getElementById('card').style.display = "flex"
+          } else {
+            document.getElementById('card').style.display = "none"
+            document.getElementById('Cardnumber').style.border = " 1px solid green";
+          }
+        }
+        
+        if (!ExpMMinput){
+          document.getElementById('MM/YY').style.display = "flex"
+          document.getElementById('MM').style.border = "1px solid red";
+        } else {
+          document.getElementById('MM/YY').style.display = "none"
+          if(isNaN(ExpMMinput)){
+            document.getElementById('MM/YY-2').style.display = "flex"
+          } else {
+            document.getElementById('MM/YY-2').style.display = "none"
+            document.getElementById('MM').style.border = " 1px solid green";
+          }
+        }
+        if (!ExpYYinput){
+          document.getElementById('MM/YY').style.display = "flex"
+          document.getElementById('YY').style.border = "1px solid red";
+        } else {
+          document.getElementById('MM/YY').style.display = "none"
+          if(isNaN(ExpMMinput)){
+            document.getElementById('MM/YY-2').style.display = "flex"
+          } else {
+            document.getElementById('MM/YY-2').style.display = "none"
+            document.getElementById('YY').style.border = " 1px solid green";
+          }
+        }
+        if (!Cvcinput){
+          document.getElementById('cvc').style.display = "flex"
+          document.getElementById('Cvc').style.border = "1px solid red";
+        } else {
+          document.getElementById('cvc').style.display = "none"
+          if(isNaN(Cvcinput)){
+            document.getElementById('cvc-2').style.display = "flex"
+          } else {
+            document.getElementById('cvc-2').style.display = "none"
+            document.getElementById('Cvc').style.border = " 1px solid green";
+          }
+        }
+        if (Nameinput && Cardinput && ExpMMinput && ExpYYinput && Cvcinput){
+          document.getElementById('Container-2').style.display = "none"
+          document.getElementById('Containe-2').style.display = "flex"
+          document.getElementById('C_name').innerHTML = Nameinput;
+          document.getElementById('C_num').innerHTML = Cardinput.replace(/(.{4})/g, '$1 ').trim();
+          document.getElementById('C_cvc').innerHTML = Cvcinput;
+          document.getElementById('C_Exp').innerHTML = ExpMMinput + "/" + ExpYYinput;
+        }
+        
+      }
+      
+  </script>
+</body>
+</html>
